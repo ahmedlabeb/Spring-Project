@@ -50,8 +50,10 @@
             </list>
         </property>-->
     </bean>
+    
+    
     <!-- comment ended for edit-->
-    <!--    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -59,6 +61,6 @@
     </bean>
     <bean id="transactionTemplate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>-->
+    </bean>
     <!-- comment ended for all xml-->
 </beans>
