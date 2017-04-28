@@ -47,26 +47,27 @@
             <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!---
-      shaaban update it due to duplication of context and mysql-connector
-             <dependency>
+        
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.0</version>
             <type>jar</type>
-        </dependency>-->
-        <!--///////////////////-->
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
         </dependency>
-        <dependency>
+        <!---
+      shaaban update it due to duplication of context and mysql-connector
+            <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.0.1.RELEASE</version>
             <type>jar</type>
-        </dependency>
+        </dependency>-->
+        <!--///////////////////-->
         
         <!--///////////////////-->
         <!---
