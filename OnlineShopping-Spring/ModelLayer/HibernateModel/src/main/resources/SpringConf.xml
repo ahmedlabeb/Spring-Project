@@ -10,9 +10,18 @@
     <!-- comment started for sll xml-->
     <tx:annotation-driven  proxy-target-class="true"/>
     <context:annotation-config/>
-    <!-- comment started for edit-->
+    <!---data source-->
+    <bean  id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/onlineshopping?zeroDateTimeBehavior=convertToNull"/>
+        <property name="password" value="root"/>
+        <property name="username" value="root"/>
+    </bean>
+     <!---data source-->
+    <!--comment started for edit -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="hibernateProperties">
+        <property name="dataSource" ref="dataSource" />
+        <!--            <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
@@ -20,20 +29,20 @@
                 <prop key="hibernate.connection.username">root</prop>
                 <prop key="hibernate.connection.password">root</prop>
             </props>
-        </property>
+        </property>-->
         
-            <property name="mappingResources">
-                <list>
-                    <value>User.hbm.xml</value>
-                    <value>Creditcard.hbm.xml</value>
-                    <value>Orders.hbm.xml</value>
-                    <value>Orderdetails.hbm.xml</value>
-                    <value>Productimages.hbm.xml</value>
-                    <value>Productreviews.hbm.xml</value>
-                    <value>Products.hbm.xml</value>
-                    <value>Rechargecards.hbm.xml</value>
-                </list>
-            </property>
+        <property name="mappingResources">
+            <list>
+                <value>User.hbm.xml</value>
+                <value>Creditcard.hbm.xml</value>
+                <value>Orders.hbm.xml</value>
+                <value>Orderdetails.hbm.xml</value>
+                <value>Productimages.hbm.xml</value>
+                <value>Productreviews.hbm.xml</value>
+                <value>Products.hbm.xml</value>
+                <value>Rechargecards.hbm.xml</value>
+            </list>
+        </property>
        
         <!--        <property name="annotatedClasses">
             <list>
@@ -55,12 +64,25 @@
     <!-- comment ended for edit-->
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    </bean><!--
+-->        
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="transactionTemplate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
+    <bean id="transactiontemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="transactionManager" />
     </bean>
-    <!-- comment ended for all xml-->
+    <!--
+         comment ended for all xml
+        
+        shibooooo User crud 
+        
+-->    <bean id="user" class="com.onlineshop.hibernatemodel.daoImp.UserDaoImp">
+        <property name="hibernate" ref="hibernateTemplate"/>
+        <property name="transaction" ref="transactiontemplate"/>
+    </bean>
+    <!--
+    
+    end by shaaban
+    -->
 </beans>

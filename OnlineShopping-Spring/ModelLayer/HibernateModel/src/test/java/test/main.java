@@ -5,16 +5,23 @@
  */
 package test;
 
+import com.onlineshop.hibernatemodel.daoImp.UserDaoImp;
+import com.onlineshop.hibernatemodel.pojo.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
- * @author Ahmed labib
+ * @author Ahmed labibtype
  */
 public class main {
     public static void main(String[] args){
         ApplicationContext ctx = new ClassPathXmlApplicationContext("SpringConf.xml");
+        //test shibo
+        UserDaoImp imp=(UserDaoImp) ctx.getBean("user");
+        imp.insertUser(new User("shaaban@gmail.com", "male", "shibo", "ebrahim", "root", ""));
+        System.out.println("inserted successfuly");
+        //test shiboo
         
     }
 }
