@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2017 6:19:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="onlineshopping" name="com.onlineshop.hibernatemodel.pojo.Productreviews" optimistic-lock="version" table="productreviews">
+    <composite-id class="com.onlineshop.hibernatemodel.pojo.ProductreviewsId" name="id">
+      <key-property name="id" type="int">
+        <column name="id"/>
+      </key-property>
+      <key-property name="userEmail" type="string">
+        <column length="45" name="User_email"/>
+      </key-property>
+      <key-property name="productsProductId" type="int">
+        <column name="products_product_id"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.onlineshop.hibernatemodel.pojo.Products" fetch="select" insert="false" name="products" update="false">
+      <column name="products_product_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.onlineshop.hibernatemodel.pojo.User" fetch="select" insert="false" name="user" update="false">
+      <column length="45" name="User_email" not-null="true"/>
+    </many-to-one>
+    <property name="comment" type="string">
+      <column name="comment"/>
+    </property>
+  </class>
+</hibernate-mapping>

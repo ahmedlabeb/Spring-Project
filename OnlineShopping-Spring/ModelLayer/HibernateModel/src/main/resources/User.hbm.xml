@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2017 6:19:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="onlineshopping" name="com.onlineshop.hibernatemodel.pojo.User" optimistic-lock="version" table="user">
+    <id name="email" type="string">
+      <column length="45" name="email"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="com.onlineshop.hibernatemodel.pojo.Creditcard" fetch="select" name="creditcard">
+      <column name="creditCard_number"/>
+    </many-to-one>
+    <property name="gender" type="string">
+      <column length="45" name="gender" not-null="true"/>
+    </property>
+    <property name="firstName" type="string">
+      <column length="45" name="firstName" not-null="true"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="45" name="lastName" not-null="true"/>
+    </property>
+    <property name="birthDate" type="date">
+      <column length="10" name="birthDate"/>
+    </property>
+    <property name="password" type="string">
+      <column length="45" name="password" not-null="true"/>
+    </property>
+    <property name="phone" type="string">
+      <column length="45" name="phone"/>
+    </property>
+    <property name="imageurl" type="string">
+      <column length="1024" name="imageurl"/>
+    </property>
+    <property name="type" type="string">
+      <column length="45" name="type" not-null="true"/>
+    </property>
+    <property name="address" type="string">
+      <column length="45" name="address"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="productreviewses" table="productreviews">
+      <key>
+        <column length="45" name="User_email" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Productreviews"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orderses" table="orders">
+      <key>
+        <column length="45" name="User_email" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Orders"/>
+    </set>
+  </class>
+</hibernate-mapping>

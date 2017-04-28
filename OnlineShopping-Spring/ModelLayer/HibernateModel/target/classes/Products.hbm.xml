@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2017 6:19:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="onlineshopping" name="com.onlineshop.hibernatemodel.pojo.Products" optimistic-lock="version" table="products">
+    <id name="productId" type="java.lang.Integer">
+      <column name="product_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="productName" type="string">
+      <column length="45" name="productName" not-null="true" unique="true"/>
+    </property>
+    <property name="price" type="double">
+      <column name="price" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="quantity" type="int">
+      <column name="quantity" not-null="true"/>
+    </property>
+    <property name="imageUrl" type="string">
+      <column length="1024" name="imageUrl" not-null="true"/>
+    </property>
+    <property name="description" type="string">
+      <column length="500" name="description" not-null="true"/>
+    </property>
+    <property name="discount" type="java.lang.Double">
+      <column name="discount" precision="22" scale="0"/>
+    </property>
+    <property name="categoryName" type="string">
+      <column length="45" name="categoryName" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="productreviewses" table="productreviews">
+      <key>
+        <column name="products_product_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Productreviews"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productimageses" table="productimages">
+      <key>
+        <column name="products_product_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Productimages"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orderdetailses" table="orderdetails">
+      <key>
+        <column name="products_product_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Orderdetails"/>
+    </set>
+  </class>
+</hibernate-mapping>

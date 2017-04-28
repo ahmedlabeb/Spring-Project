@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+    <!-- comment started for sll xml-->
+    <tx:annotation-driven  proxy-target-class="true"/>
+    <context:annotation-config/>
+    <!-- comment started for edit-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/onlineshopping?zeroDateTimeBehavior=convertToNull</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password">root</prop>
+            </props>
+        </property>
+        
+            <property name="mappingResources">
+                <list>
+                    <value>User.hbm.xml</value>
+                    <value>Creditcard.hbm.xml</value>
+                    <value>Orders.hbm.xml</value>
+                    <value>Orderdetails.hbm.xml</value>
+                    <value>Productimages.hbm.xml</value>
+                    <value>Productreviews.hbm.xml</value>
+                    <value>Products.hbm.xml</value>
+                    <value>Rechargecards.hbm.xml</value>
+                </list>
+            </property>
+       
+        <!--        <property name="annotatedClasses">
+            <list>
+                <value>com.onlineshop.hibernatemodel.pojo.Creditcard</value> 
+                <value>com.onlineshop.hibernatemodel.pojo.Orderdetails</value>
+                <value>com.onlineshop.hibernatemodel.pojo.Orders</value>
+                <value>com.onlineshop.hibernatemodel.pojo.Productimages</value>
+                <value>com.onlineshop.hibernatemodel.pojo.ProductimagesId</value>
+                <value>com.onlineshop.hibernatemodel.pojo.Productreviews</value>
+                <value>com.onlineshop.hibernatemodel.pojo.ProductreviewsId</value>
+                <value>com.onlineshop.hibernatemodel.pojo.Products</value>
+                <value>com.onlineshop.hibernatemodel.pojo.Rechargecards</value>
+                <value>com.onlineshop.hibernatemodel.pojo.User</value>
+            </list>
+        </property>-->
+    </bean>
+    <!-- comment ended for edit-->
+    <!--    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transactionTemplate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>-->
+    <!-- comment ended for all xml-->
+</beans>

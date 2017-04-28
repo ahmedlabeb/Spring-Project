@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2017 6:19:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="onlineshopping" name="com.onlineshop.hibernatemodel.pojo.Orders" optimistic-lock="version" table="orders">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.onlineshop.hibernatemodel.pojo.User" fetch="select" name="user">
+      <column length="45" name="User_email" not-null="true"/>
+    </many-to-one>
+    <property name="date" type="date">
+      <column length="10" name="date"/>
+    </property>
+    <property name="status" type="java.lang.Integer">
+      <column name="status"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="orderdetailses" table="orderdetails">
+      <key>
+        <column name="order_id" not-null="true"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.Orderdetails"/>
+    </set>
+  </class>
+</hibernate-mapping>

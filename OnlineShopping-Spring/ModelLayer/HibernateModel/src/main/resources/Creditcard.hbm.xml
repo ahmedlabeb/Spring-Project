@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 28, 2017 6:19:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="onlineshopping" name="com.onlineshop.hibernatemodel.pojo.Creditcard" optimistic-lock="version" table="creditcard">
+    <id name="number" type="long">
+      <column name="number"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="expireDate" type="string">
+      <column length="45" name="expireDate"/>
+    </property>
+    <property name="balance" type="java.lang.Double">
+      <column name="balance" precision="22" scale="0"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="users" table="user">
+      <key>
+        <column name="creditCard_number"/>
+      </key>
+      <one-to-many class="com.onlineshop.hibernatemodel.pojo.User"/>
+    </set>
+  </class>
+</hibernate-mapping>
