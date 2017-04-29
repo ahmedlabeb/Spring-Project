@@ -8,6 +8,7 @@ package com.onlineshop.hibernatemodel.daoImp;
 import com.onlineshop.hibernatemodel.daoInterface.UserDaoInterface;
 import com.onlineshop.hibernatemodel.pojo.User;
 import java.util.List;
+import org.hibernate.Query;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -55,10 +56,14 @@ public class UserDaoImp implements UserDaoInterface {
 
     @Override
     public User selectUser(String email, String password) {
-    
-     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   
-    
+        //start
+        String sql = "from User   p where p.email=:email and p.password=:password ";
+        Query query = hibernate.getSessionFactory().openSession().createQuery(sql);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+
+        return (User) query.list().get(0);
+
     }
 
     //shibooooo
@@ -77,15 +82,21 @@ public class UserDaoImp implements UserDaoInterface {
                 return user;
             }
         });
-    
-    return user;
-    
-    //end
+
+        return user;
+
+        //end
     }
 
     @Override
     public double selectUserbalance(double balance) {
+//         String sql = "p.balance from User p where p.email=:email ";
+//        Query query = hibernate.getSessionFactory().openSession().createQuery(sql);
+//        query.setParameter("email", "shaaban@gmail.com");
+//       User user= (User)query.list().get(0);
+//        return user.getBa
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -95,13 +106,23 @@ public class UserDaoImp implements UserDaoInterface {
 
     @Override
     public User findUser(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String sql = "from User   p where p.email=:email";
+        Query query = hibernate.getSessionFactory().openSession().createQuery(sql);
+        query.setParameter("email", email);
+
+        return (User) query.list().get(0);
+
     }
 
     // Start Nesmaa
     @Override
     public List<User> selectAllUsers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "from User p ";
+        Query query = hibernate.getSessionFactory().openSession().createQuery(sql);
+
+        return query.list();
+
     }
     // End Nesmaa
 }

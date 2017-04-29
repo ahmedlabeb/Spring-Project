@@ -19,8 +19,14 @@ public class main {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("SpringConf.xml");
         //test shibo
         UserDaoImp imp=(UserDaoImp) ctx.getBean("user");
-        imp.insertUser(new User("shaaban@gmail.com", "male", "shibo", "ebrahim", "root", ""));
+        
+       User user= imp.selectUser("shaaban@gmail.com", "root");
+        System.out.println(""+user.getGender());
+        imp.insertUser(new User("shaaban@gmi.com", "male", "shibo", "ebrahim", "root", ""));
         System.out.println("inserted successfuly");
+        for (User selectAllUser : imp.selectAllUsers()) {
+            System.out.println(""+selectAllUser.getEmail());
+        }
         //test shiboo
         
     }
