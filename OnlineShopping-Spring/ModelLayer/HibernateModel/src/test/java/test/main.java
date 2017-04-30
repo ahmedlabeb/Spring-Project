@@ -31,19 +31,18 @@ public class main {
        // }
         //test shiboo
         
-       /* 
-        nesmaa
+       
+       // nesmaa
         CardNumberDaoImp obj =(CardNumberDaoImp) ctx.getBean("cardnumber");
         
-        //   obj.insertCard(new Rechargecards(1, 10, "0"));
+           obj.insertCard(new Rechargecards(2, 10, "0"));
         //   System.out.println("insert");
         //obj.updateCardStatus(0, "1");
         //  Rechargecards findCardNumber = obj.findCardNumber(1);
         //  System.out.println(findCardNumber.getStatus());
         Rechargecards findCardNumber = obj.findCardNumber(0);
         System.out.println(findCardNumber.getValue());
-        end nesma
-*/
+      //  end nesma
         
      
         

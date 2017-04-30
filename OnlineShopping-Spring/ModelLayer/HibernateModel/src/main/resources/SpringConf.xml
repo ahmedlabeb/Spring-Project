@@ -100,8 +100,8 @@
     <!-- nesam-->
     
       <bean id="cardnumber" class="com.onlineshop.hibernatemodel.daoImp.CardNumberDaoImp">
-        <property name="template" ref="hibernateTemplate"/>
-        <property name="transactiontemplate" ref="transactiontemplate"/>
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+       
     </bean>
     
     <!--end nesma-->
