@@ -7,111 +7,44 @@ package com.onlineshop.hibernatemodel.daoImp;
 
 import com.onlineshop.hibernatemodel.daoInterface.CardNumberDaoInterface;
 import com.onlineshop.hibernatemodel.pojo.Rechargecards;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-import org.springframework.transaction.support.TransactionTemplate;
-import org.springframework.orm.hibernate4.HibernateTemplate;
+import javax.transaction.Transactional;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 /**
  *
  * @author Ahmed labib
  */
-public class CardNumberDaoImp implements CardNumberDaoInterface{
-    // Start Nesmaa
-   
-    TransactionTemplate transactiontemplate;
-
-    HibernateTemplate template;
-
-    public TransactionTemplate getTransactiontemplate() {
-        return transactiontemplate;
-    }
-
-    public void setTransactiontemplate(TransactionTemplate transactiontemplate) {
-        this.transactiontemplate = transactiontemplate;
-    }
-
-    public HibernateTemplate getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(HibernateTemplate template) {
-        this.template = template;
-    }
+public class CardNumberDaoImp extends HibernateDaoSupport implements CardNumberDaoInterface {
 
     // Start Nesmaa
     @Override
     public Rechargecards findCardNumber(int number) {
 
-        return (Rechargecards) transactiontemplate.execute(new TransactionCallback() {
-
-            @Override
-            public Rechargecards doInTransaction(TransactionStatus ts) {
-
-                Rechargecards rechargedCard = (Rechargecards) template.get(Rechargecards.class, number);
-
-                return rechargedCard;
-
-            }
-
-        });
-
+        Rechargecards rechargedCard = (Rechargecards) getHibernateTemplate().get(Rechargecards.class, number);
+        return rechargedCard;
     }
 
+    @Transactional
     @Override
     public Rechargecards insertCard(Rechargecards rechargecards) {
-
-        return (Rechargecards) transactiontemplate.execute(new TransactionCallback() {
-
-            @Override
-            public Rechargecards doInTransaction(TransactionStatus ts) {
-
-                template.save(rechargecards);
-
-                return rechargecards;
-
-            }
-
-        });
-
+        getHibernateTemplate().save(rechargecards);
+        return rechargecards;
     }
 
+    @Transactional
     @Override
     public Rechargecards updateCardStatus(int rechargeCardID, String status) {
 
-        return (Rechargecards) transactiontemplate.execute(new TransactionCallback() {
-
-            @Override
-            public Rechargecards doInTransaction(TransactionStatus ts) {
-
-                Rechargecards rechargedCard = (Rechargecards) template.get(Rechargecards.class, rechargeCardID);
-                rechargedCard.setStatus(status);
-                template.save(rechargedCard);
-
-                return rechargedCard;
-
-            }
-
-        });
-
+        Rechargecards rechargedCard = (Rechargecards) getHibernateTemplate().get(Rechargecards.class, rechargeCardID);
+        rechargedCard.setStatus(status);
+        getHibernateTemplate().save(rechargedCard);
+        return rechargedCard;
     }
 
     @Override
     public String findCardStatus(int rechargeCardID) {
-
-        return (String) transactiontemplate.execute(new TransactionCallback() {
-
-            @Override
-            public String doInTransaction(TransactionStatus ts) {
-
-                Rechargecards rechargedCard = (Rechargecards) template.get(Rechargecards.class, rechargeCardID);
-
-                return rechargedCard.getStatus();
-
-            }
-
-        });
-
+        Rechargecards rechargedCard = (Rechargecards) getHibernateTemplate().get(Rechargecards.class, rechargeCardID);
+        return rechargedCard.getStatus();
     }
     // End Nesmaa
 }
