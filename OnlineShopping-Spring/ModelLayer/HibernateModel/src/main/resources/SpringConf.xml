@@ -10,14 +10,26 @@
     <!-- comment started for sll xml-->
     <tx:annotation-driven  proxy-target-class="true"/>
     <context:annotation-config/>
+    
     <!---data source-->
+    <!--
     <bean  id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/onlineshopping?zeroDateTimeBehavior=convertToNull"/>
         <property name="password" value="root"/>
         <property name="username" value="root"/>
     </bean>
+    -->
      <!---data source-->
+     
+     
+        <bean  id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/onlineshopping?zeroDateTimeBehavior=convertToNull"/>
+<!--        <property name="password" value="root"/>-->
+        <property name="username" value="root"/>
+    </bean>
+     
     <!--comment started for edit -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
@@ -85,4 +97,12 @@
     
     end by shaaban
     -->
+    <!-- nesam-->
+    
+      <bean id="cardnumber" class="com.onlineshop.hibernatemodel.daoImp.CardNumberDaoImp">
+        <property name="template" ref="hibernateTemplate"/>
+        <property name="transactiontemplate" ref="transactiontemplate"/>
+    </bean>
+    
+    <!--end nesma-->
 </beans>
